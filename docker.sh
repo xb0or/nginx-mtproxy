@@ -51,7 +51,6 @@ start_menu(){
     read -p "是否继续？:" num
     case "$num" in   
     *)
-    install_pack
 	check_docker
     check_docker_compose
     echo -e "\033[32m====================================\033[0m"	
