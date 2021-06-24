@@ -1,9 +1,9 @@
 #!/bin/bash                                                                                                  
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 
-read -e -p "请输入链接端口(默认8443) :" port
+read -e -p "请输入链接端口(默认443) :" port
 if [[ -z "${port}" ]]; then
-port="8443"
+port="443"
 fi
 
 read -e -p "请输入密码(默认随机生成) :" secret
