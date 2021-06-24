@@ -1,6 +1,12 @@
 # nginx-mtproxy
 ## 此脚本基于[https://hub.docker.com/r/ellermister/nginx-mtproxy](https://hub.docker.com/r/ellermister/nginx-mtproxy)修改
 
+
+## 一键脚本
+```
+bash <(curl -sSL "https://raw.githubusercontent.com/xb0or/nftest/main/netflix.sh")
+```
+
 ## 其他命令
 
 ### Stop service / 停止服务
