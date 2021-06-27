@@ -9,6 +9,7 @@ fi
 read -e -p "请输入密码(默认随机生成) :" secret
 if [[ -z "${secret}" ]]; then
 secret=$(head -c 16 /dev/urandom | xxd -ps)
+echo -e "密码：$secret"
 fi
 
 read -e -p "请输入伪装域名(默认cloudflare.com) :" domain
