@@ -9,7 +9,8 @@ fi
 read -e -p "请输入密码(默认随机生成) :" secret
 if [[ -z "${secret}" ]]; then
 secret=$(cat /proc/sys/kernel/random/uuid |sed 's/-//g')
-echo -e "密码：$secret"
+echo -e "密码："
+echo -e "$secret"
 fi
 
 read -e -p "请输入伪装域名(默认www.microsoft.com) :" domain
@@ -34,7 +35,7 @@ echo -e "正在安装依赖: Docker... "
 echo y | bash <(curl -L -s https://cdn.jsdelivr.net/gh/xb0or/nginx-mtproxy@main/docker.sh)
 
 echo -e "正在安装nginx-mtproxy... "
-docker run --name nginx-mtproxy -d  -p 80:80 -p 443:443 ellermister/nginx-mtproxy:latest
+docker run --name nginx-mtproxy -d -e secret="$secret" -e domain="$domain" -p 80:80 -p 443:443 ellermister/nginx-mtproxy:latest
         ;;
     esac
 
