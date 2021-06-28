@@ -8,13 +8,13 @@ fi
 
 read -e -p "请输入密码(默认随机生成) :" secret
 if [[ -z "${secret}" ]]; then
-secret=$(head -c 16 /dev/urandom | xxd -ps)
+secret=$(cat /proc/sys/kernel/random/uuid |sed 's/-//g')
 echo -e "密码：$secret"
 fi
 
-read -e -p "请输入伪装域名(默认cloudflare.com) :" domain
+read -e -p "请输入伪装域名(默认www.microsoft.com) :" domain
 if [[ -z "${domain}" ]]; then
-domain="cloudflare.com"
+domain="www.microsoft.com"
 fi
 read -rp "你需要TAG标签吗(Y/N): " chrony_install
     [[ -z ${chrony_install} ]] && chrony_install="Y"
