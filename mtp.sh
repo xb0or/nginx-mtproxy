@@ -43,4 +43,14 @@ docker run --name nginx-mtproxy -d -e secret="$secret" -e domain="$domain" -p 80
 
 echo -e "正在设置开机自启动... "
 docker update --restart=always nginx-mtproxy
-echo -e "输入 docker logs nginx-mtproxy 获取链接信息";
+# echo -e "输入 docker logs nginx-mtproxy 获取链接信息"
+
+    public_ip=$(curl -s https://api.ip.sb/ip --ipv4)
+    [ -z "$public_ip" ] && public_ip=$(curl -s ipinfo.io/ip --ipv4)
+    domain_hex=$(xxd -pu <<< $domain | sed 's/0a//g')
+    client_secret="ee${secret}${domain_hex}"
+    echo -e "服务器IP：\033[31m$public_ip\033[0m"
+    echo -e "服务器端口：\033[31m$port\033[0m"
+    echo -e "MTProxy Secret:  \033[31m$client_secret\033[0m"
+    echo -e "白名单认真地址：https://${public_ip}/add.php"
+    echo -e "TG一键链接: https://t.me/proxy?server=${public_ip}&port=${port}&secret=${client_secret}"
