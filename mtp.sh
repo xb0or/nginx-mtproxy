@@ -45,7 +45,7 @@ echo -e "正在设置开机自启动... "
 docker update --restart=always nginx-mtproxy
 # echo -e "输入 docker logs nginx-mtproxy 获取链接信息"
 
-    public_ip=$(curl -s https://api.ip.sb/ip --ipv4)
+    public_ip=$(curl -s http://ipv4.icanhazip.com)
     [ -z "$public_ip" ] && public_ip=$(curl -s ipinfo.io/ip --ipv4)
     domain_hex=$(xxd -pu <<< $domain | sed 's/0a//g')
     client_secret="ee${secret}${domain_hex}"
