@@ -28,14 +28,14 @@ read -rp "你需要TAG标签吗(Y/N): " chrony_install
         echo -e "正在安装依赖: Docker... "
         echo y | bash <(curl -L -s https://raw.githubusercontent.com/xb0or/nginx-mtproxy/main/docker.sh)
         echo -e "正在安装nginx-mtproxy... "
-        docker run --name nginx-mtproxy -d -e tag="$tag" -e secret="$secret" -e domain="$domain" -p 80:80 -p $port:$port ellermister/nginx-mtproxy:latest
+        docker run --name nginx-mtproxy -d -e tag="$tag" -e secret="$secret" -e domain="$domain" -p 80:80 -p $port:$port -e ip_white_list="IP" -v /mtp:/etc/nginx ellermister/nginx-mtproxy:latest
         ;;
     *)
 echo -e "正在安装依赖: Docker... "
 echo y | bash <(curl -L -s https://cdn.jsdelivr.net/gh/xb0or/nginx-mtproxy@main/docker.sh)
 
 echo -e "正在安装nginx-mtproxy... "
-docker run --name nginx-mtproxy -d -e secret="$secret" -e domain="$domain" -p 80:80 -p $port:$port ellermister/nginx-mtproxy:latest
+docker run --name nginx-mtproxy -d -e secret="$secret" -e domain="$domain" -p 80:80 -p $port:$port -e ip_white_list="IP" -v /mtp:/etc/nginx ellermister/nginx-mtproxy:latest
         ;;
     esac
 
