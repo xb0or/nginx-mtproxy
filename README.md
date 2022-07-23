@@ -14,6 +14,12 @@ bash <(curl -sSL "https://cdn.jsdelivr.net/gh/xb0or/nginx-mtproxy@main/mtp.sh")
 
 ## 其他命令
 
+### 白名单控制脚本（实验）
+##不保证可以成功使用，推荐进入docker内修改/etc/nginx/ip_white.conf 内容
+```
+bash <(curl -sSL "https://raw.githubusercontent.com/xb0or/nginx-mtproxy/main/mtp2.sh")
+```
+
 ### Stop service / 停止服务
 
 ```
