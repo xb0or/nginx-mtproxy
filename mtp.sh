@@ -28,7 +28,7 @@ read -rp "你需要TAG标签吗(Y/N): " chrony_install
         echo -e "正在安装依赖: Docker... "
         echo y | bash <(curl -L -s https://raw.githubusercontent.com/xb0or/nginx-mtproxy/main/docker.sh)
         echo -e "正在安装nginx-mtproxy... "
-        docker run --name nginx-mtproxy -d -e tag="$tag" -e secret="$secret" -e domain="$domain" -p 80:80 -p $port:$port ellermister/nginx-mtproxy:latest
+        docker run --name nginx-mtproxy -d -e tag="$tag" -e secret="$secret" -e domain="$domain" -p 85:80 -p $port:443 ellermister/nginx-mtproxy:latest
         ;;
     *)
     #-v /etc/nginx:/etc/nginx 
@@ -36,7 +36,7 @@ echo -e "正在安装依赖: Docker... "
 echo y | bash <(curl -L -s https://cdn.jsdelivr.net/gh/xb0or/nginx-mtproxy@main/docker.sh)
 
 echo -e "正在安装nginx-mtproxy... "
-docker run --name nginx-mtproxy -d -e secret="$secret" -e domain="$domain" -p 80:80 -p $port:$port ellermister/nginx-mtproxy:latest
+docker run --name nginx-mtproxy -d -e secret="$secret" -e domain="$domain" -p 85:80 -p $port:443 ellermister/nginx-mtproxy:latest
         ;;
     esac
 
@@ -53,5 +53,5 @@ docker update --restart=always nginx-mtproxy
     echo -e "服务器IP：\033[31m$public_ip\033[0m"
     echo -e "服务器端口：\033[31m$port\033[0m"
     echo -e "MTProxy Secret:  \033[31m$client_secret\033[0m"
-    echo -e "TG认证地址：http://${public_ip}:80/add.php"
+    echo -e "TG认证地址：http://${public_ip}:85/add.php"
     echo -e "TG一键链接: https://t.me/proxy?server=${public_ip}&port=${port}&secret=${client_secret}"
